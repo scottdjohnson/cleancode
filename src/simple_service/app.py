@@ -6,29 +6,20 @@ import sys
 import json
 
 
-def process_json_input(json_string):
+def format_output(json_string):
     data = json.loads(json_string)
     
-    return {
-        'firstName': data.get('firstName', ''),
-        'lastName': data.get('lastName', ''),
-        'city': data.get('city', '')
-    }
-
-
-def format_output(data):
     lines = [
-        f"First Name: {data['firstName']}",
-        f"Last Name: {data['lastName']}",
-        f"City: {data['city']}"
+        f"First Name: {data.get('firstName', '')}",
+        f"Last Name: {data.get('lastName', '')}",
+        f"City: {data.get('city', '')}"
     ]
     return '\n'.join(lines)
 
 
 def main():
     json_string = sys.argv[1]
-    data = process_json_input(json_string)
-    output = format_output(data)
+    output = format_output(json_string)
     print(output)
 
 
